@@ -1,0 +1,771 @@
+#include <stdio.h>
+#include <string.h>
+#include <locale.h>
+#include <stdlib.h>
+
+
+
+
+struct Ocliente{
+        char nome[10];
+        char ultSobrenome[10];
+        char endereco[70];
+        char cpf[9];
+        char telefone[11];
+        }oCliente[1000];
+        
+struct Apizza{
+        char nome[10];
+        char sabor1[10];
+        char sabor2[10];
+        char sabor3[10];
+        char obsSabor[60];
+        float precoSabor;
+    // Cada porção de um sabor equivale a metade de uma pizza.
+    // Para uma pizza interira com o mesmo sabor, considera-se 2 porções por pizza inteira.
+        }aPizza[1000];
+        
+struct Ocolaborador{
+        char nome[10];
+        char sobrenome[10];
+        char endereco[60];
+        char funcColaborador[15];
+        char cpf[9];
+        char telefone[9];
+        }oColaborador[1000];
+
+int main(){
+	setlocale(LC_ALL, "Portuguese");
+	int opc=0,quantAdd=0,opc1=0,opc2=0,opc3=0,opc4=0,opc5=0,opc6=0,opc7=0,opc8=0,a1,i=0,p=0,a2,j=0,a3,a4,bebida=0,k=0,numPedidosDia=0, fimPed=0, z=0,massa=9000, queijo=4000, cebola=3000, molho=3000, tomate = 2000, chocolate = 1000, goiabada = 1000, acucar = 1000, frango = 1500, calabresa = 1500,peperone = 1000, catupiry = 1500, alhoporo = 750,  azeitona = 750, coca = 700, zero = 350, guarana = 450, agua = 600, gas = 250, cerveja = 700;
+	char saborPedPizza1, infAdcPedido,saborPedPizza2, bebidaPedido;
+	float valorBebida=0 ,valorPedido=0, totalDia = 0, valorPizzaPed=0, valorTtlVendas=0, venda1[1000]={0} ;
+	
+	do{
+		printf("|------------------------------------|\n");
+    	printf("|         DOM   CORLEONE             |\n");
+    	printf("|------------------------------------|\n");
+    	printf("|1 - ATENDIMENTO CLIENTE             |\n");
+    	printf("|2 - CONTABILIDADE                   |\n");
+    	printf("|3 - ESTOQUE                         |\n");
+    	printf("|4 - SUGESTOES E RECLAMACOES (BREVE) |\n");
+    	printf("|5 - CADASTRO FUNCIONARIOS           |\n");
+    	printf("|6 - SAIR                            |\n");
+    	printf("|------------------------------------|\n");
+    	printf("|DIGITE A OPCAO DESEJADA:           \n");
+		scanf("%d", &opc1)	;
+		switch(opc1){
+			case 1:
+			    printf("|-------------------------------------|\n");
+            	printf("|            ATENDIMENTO              |\n");
+            	printf("|-------------------------------------|\n");
+            	printf("|1 - PEDIDO                           |\n");
+            	printf("|2 - NOVO CADASTRO CLIENTE            |\n");
+            	printf("|3 - PROCURAR CLIENTE/ALTERAR (BREVE) |\n");
+            	printf("|4 - CADASTRO PIZZA                   |\n");
+            	printf("|5 - VOLTAR                           |\n");
+            	printf("|-------------------------------------|\n");
+            	printf("|DIGITE A OPCAO DESEJADA:           \n");
+            	scanf("%d", &opc2);
+            		switch(opc2){
+                		case 1:
+                    	printf("|----------------------------------|\n");
+                    	printf("|              PEDIDO              |\n");
+                    	printf("|----------------------------------|\n");
+                    	printf("|1 - NOVO PEDIDO                   |\n");
+                    	printf("|2 - ALTERAR PEDIDO (BREVE)        |\n");
+                    	printf("|3 - CANCELAR PEDIDO               |\n");
+                    	printf("|----------------------------------|\n");
+                    	printf("Digite a opção desejada: \n");
+                    	scanf("%d", &opc3);
+                    		switch(opc3){
+                    			case 1:
+			                    	printf("|-----------------------------------------|\n");
+			                        printf("|            SABORES                      |\n");
+			                        printf("|-----------------------------------------|\n");
+			                        printf("|1 - CALABREZA             1/2 = R$12,00  |\n");
+			                        printf("|2 - FRANGO COM CATUPIRY   1/2 = R$15,00  |\n");
+			                        printf("|3 - PEPERONE              1/2 = R$13,00  |\n");
+			                        printf("|4 - VEGANA                1/2 = R$15,50  |\n");
+			                        printf("|5 - CHOCOLATE             1/2 = R$16,00  |\n");
+			                        printf("|6 - ROMEU E JULIETA       1/2 = R$17,00  |\n");
+			                        printf("|-----------------------------------------|\n");
+			                        printf("Pizza inteira ou dois sabores? 1 - Para completa de um sabor || 2- Para dois sabores\n ");
+			                        scanf("%d", &opc4);
+			                        	switch(opc4){
+			                        		case 1:
+			                        			valorPedido = 0;
+			                        			valorPizzaPed = 0;
+			                        			printf("Qual o sabor da pizza?\n\n");
+			                        			scanf("%s", &saborPedPizza1);
+			                        				switch(saborPedPizza1){
+			                        					case 1:
+			                        						printf("CALABREZA\n");
+			                        						valorPizzaPed = 2* 12,00;
+			                        						calabresa= calabresa - 2;
+			                        						queijo= queijo-2;
+			                        						molho=molho-2;
+			                        						cebola=cebola-2;
+															azeitona=azeitona-2;	
+															massa=massa-1;		                        						
+			                        					case 2:
+			                        						printf("FRANGO COM CATUPIRY\n");
+			                        						valorPizzaPed = 2* 15,00;
+			                        						frango=frango-2;
+			                        						catupiry=catupiry-2;
+			                        						queijo= queijo-2;
+			                        						molho=molho-2;
+			                        						cebola=cebola-1;
+			                        						massa=massa-1;
+			                        						
+			                        					case 3:
+			                        						printf("PEPERONE\n");
+			                        						valorPizzaPed = 2* 13,00;
+			                        						peperone=peperone-2;
+			                        						queijo= queijo-2;
+			                        						molho=molho-2;
+			                        						cebola=cebola-1;
+															tomate=tomate-2	;
+															massa=massa-1;		                        						
+			                        					case 4:
+			                        						printf("VEGANA\n");
+			                        						valorPizzaPed = 2* 15,00;
+			                        						tomate=tomate-3;
+			                        						azeitona=azeitona-3;
+			                        						alhoporo=alhoporo-3;
+			                        						cebola=cebola-3;
+			                        						massa=massa-1;
+			                        					case 5:
+			                        						printf("CHOCOLATE\n");
+			                        						valorPizzaPed = 2* 16,00;
+			                        						massa=massa-1;
+			                        						acucar=acucar-2;
+			                        						chocolate=chocolate-2;
+			                        						
+			                        					case 6:
+			                        						printf("ROMEU E JULIETA\n");
+			                        						valorPizzaPed = 2* 17,00;
+			                        						massa=massa-1;
+			                        						queijo=queijo-2;
+			                        						goiabada=goiabada-2;
+																
+													}
+			                        			printf("Alguma informação adicional para a cozinha?\n\n");
+			                        			scanf("%s", &infAdcPedido);
+			                        			printf("Deseja adicionar alguma bebida? 1- Sim || 2- Não\n\n");
+			                        			scanf("%d", &a3);
+			                        				switch(a3){
+											
+			                        		   			case 1:
+						                        			printf("|------------------------------------|\n");
+									                        printf("|            BEBIDAS                 |\n");
+									                        printf("|------------------------------------|\n");
+									                        printf("|1 - COCA 350ML		  R$4,00         |\n");
+									                        printf("|2 - COCA ZERO 350ML  R$4,00         |\n");
+									                        printf("|3 - GUARANA          R$3,50         |\n");
+									                        printf("|4 - AGUA S/ GÁS      R$3,00         |\n");
+									                        printf("|5 - AGUA C/ GAS      R$3,50         |\n");
+									                        printf("|6 - CERVEJA          R$5,00         |\n");
+									                        printf("|------------------------------------|\n");
+									                        printf("Qual a bebida que você gostaria?\n");
+									                        scanf("%d", &bebida);
+									                        	switch(bebida){
+									                        		case 1:
+									                        			printf("COCA\n");
+			                        									valorBebida = 4,00;
+									                        		break;	
+									                        		case 2:
+									                        			printf("COCA ZERO\n");
+			                        									valorBebida = 4,00;
+									                        		break;	
+									                        		case 3:
+									                        			printf("GUARANA\n");
+			                        									valorBebida = 3,50;
+									                        		break;	
+									                        		case 4:
+									                        			printf("AGUA S/ GAS\n");
+			                        									valorBebida = 3,00;
+									                        		break;	
+									                        		case 5:
+									                        			printf("AGUA C/ GAS\n");
+			                        									valorBebida = 3,50;
+									                        		break;
+																	case 6:
+																		printf("CERVEJA\n");
+			                        									valorBebida = 5,00;
+									                        			
+									                        		break;		
+																} 
+						                       			case 2:
+						                       				valorPedido = valorBebida + valorPizzaPed;
+						                       				numPedidosDia++;
+						                        			break;
+												}
+													}
+												case 2:
+													printf("Qual o primeiro sabor da pizza?\n\n");
+					                        		scanf("%s", &saborPedPizza1);
+						                        		switch(saborPedPizza1){
+				                        					case 1:
+				                        						printf("CALABREZA\n");
+				                        						valorPizzaPed = 12,00;
+				                        					case 2:
+				                        						printf("FRANGO COM CATUPIRY\n");
+				                        						valorPizzaPed = 15,00;
+				                        					case 3:
+				                        						printf("PEPERONE\n");
+				                        						valorPizzaPed = 13,00;
+				                        					case 4:
+				                        						printf("VEGANA\n");
+				                        						valorPizzaPed = 15,00;
+				                        					case 5:
+				                        						printf("CHOCOLATE\n");
+				                        						valorPizzaPed = 16,00;
+				                        					case 6:
+				                        						printf("ROMEU E JULIETA\n");
+				                        						valorPizzaPed = 17,00;
+																	
+														}
+					                        		printf("Qual o segundo sabor da pizza?\n\n");
+					                        		scanf("%s", &saborPedPizza2);
+					                        			switch(saborPedPizza2){
+					                        				case 1:
+				                        						printf("CALABREZA\n");
+				                        						valorPizzaPed = valorPizzaPed + 12,00;
+				                        					case 2:
+				                        						printf("FRANGO COM CATUPIRY\n");
+				                        						valorPizzaPed = valorPizzaPed + 15,00;
+				                        					case 3:
+				                        						printf("PEPERONE\n");
+				                        						valorPizzaPed = valorPizzaPed + 13,00;
+				                        					case 4:
+				                        						printf("VEGANA\n");
+				                        						valorPizzaPed = valorPizzaPed + 15,00;
+				                        					case 5:
+				                        						printf("CHOCOLATE\n");
+				                        						valorPizzaPed = valorPizzaPed + 16,00;
+				                        					case 6:
+				                        						printf("ROMEU E JULIETA\n");
+				                        						valorPizzaPed = valorPizzaPed + 17,00;
+																	
+														}
+					                        		printf("Alguma informação adicional para a cozinha?\n\n");
+					                        		scanf("%s", &infAdcPedido);
+					                        		printf("Deseja adicionar alguma bebida? 1- Sim || 2- Não\n\n");
+			                        			scanf("%d", &a3);
+			                        				switch(a3){
+											
+			                        		   			case 1:
+						                        			printf("|------------------------------------|\n");
+									                        printf("|            BEBIDAS                 |\n");
+									                        printf("|------------------------------------|\n");
+									                        printf("|1 - COCA 350ML		  R$4,00         |\n");
+									                        printf("|2 - COCA ZERO 350ML  R$4,00         |\n");
+									                        printf("|3 - GUARANA          R$3,50         |\n");
+									                        printf("|4 - AGUA S/ GÁS      R$3,00         |\n");
+									                        printf("|5 - AGUA C/ GAS      R$3,50         |\n");
+									                        printf("|6 - CERVEJA          R$5,00         |\n");
+									                        printf("|------------------------------------|\n");
+									                        printf("Qual a bebida que você gostaria?\n");
+									                        scanf("%d", &bebida);
+									                        	switch(bebida){
+									                        		case 1:
+									                        			printf("COCA\n");
+			                        									valorBebida = 4,00;
+									                        		break;	
+									                        		case 2:
+									                        			printf("COCA ZERO\n");
+			                        									valorBebida = 4,00;
+									                        		break;	
+									                        		case 3:
+									                        			printf("GUARANA\n");
+			                        									valorBebida = 3,50;
+									                        		break;	
+									                        		case 4:
+									                        			printf("AGUA S/ GAS\n");
+			                        									valorBebida = 3,00;
+									                        		break;	
+									                        		case 5:
+									                        			printf("AGUA C/ GAS\n");
+			                        									valorBebida = 3,50;
+									                        		break;
+																	case 6:
+																		printf("CERVEJA\n");
+			                        									valorBebida = 5,00;
+									                        			
+									                        		break;		
+									                        		
+									                        		
+																	
+						                       						valorPedido = valorBebida + valorPizzaPed;
+																} 
+																printf("VALOR TOTAL DO SEU PEDIDO É: %f\n\n", valorPedido);
+									                        	printf("DESEJA FINALIZAR O SEU PEDIDO? 1-SIM || 2-NAO\n");
+									                        	scanf("%d", &fimPed);
+									                        	if(fimPed == 1){
+									                        		printf("O número do seu pedido é: %d \n", numPedidosDia);
+									                        		printf("Valor total é: %d", valorPedido);
+									                        		
+																	valorTtlVendas = valorTtlVendas + valorPedido;
+																	venda1[numPedidosDia]=valorTtlVendas;
+																	numPedidosDia++;
+																	;
+																	}
+									                        		opc = 0;
+									                        		
+						                       			case 2:
+						                       				valorPedido = valorBebida + valorPizzaPed;
+						                       				printf("VALOR TOTAL DO SEU PEDIDO É: %f\n\n", valorPedido);
+									                        printf("DESEJA FINALIZAR O SEU PEDIDO? 1-SIM || 2-NAO\n");
+									                        scanf("%d", &fimPed);
+									                        if(fimPed == 1){
+									                        	printf("O número do seu pedido é: %d \n", numPedidosDia);
+									                        	printf("Valor total é: %d", valorPedido);
+									                        	
+																valorTtlVendas = valorTtlVendas + valorPedido;
+																	venda1[numPedidosDia]=valorTtlVendas;
+																	numPedidosDia++;																
+																}
+									                        	opc = 0;
+						                        			break;
+						                        		
+												}
+													
+										}
+										
+									
+						break;
+						case 2:
+							do{
+							printf("|----------------------------------|\n");
+		                    printf("|      NOVO CADASTRO CLIENTES      |\n");
+		                    printf("|----------------------------------|\n");
+		                    printf("DIGITE O NOME DO CLIENTE:\n");
+		                    scanf("%s", &oCliente[i].nome);
+		                    printf("\n");
+		                    printf("DIGITE O ULTIMO SOBRENOME DO CLIENTE:\n");
+		                    scanf("%s", &oCliente[i].ultSobrenome);
+		                    printf("\n");
+		                    printf("DIGITE O TELEFONE DO CLIENTE COM DDD (EXEMPLO: 61999998888):\n");
+		                    scanf("%s", &oCliente[i].telefone);
+		                    printf("\n");
+		                    printf("DIGITE O CPF DO CLIENTE:\n");
+		                    scanf("%s", &oCliente[i].cpf);
+		                    printf("\n");
+		                    printf("DIGITE O ENDERECO DO CLIENTE:\n");
+		                    scanf("%s", &oCliente[i].endereco);
+		                    printf("\n");
+		                    printf("NOME: %s        SOBRENOME: %s       TELEFONE: %s       CPF: %s \nENDERECO: %s ", oCliente[i].nome,oCliente[i].ultSobrenome,oCliente[i].telefone,oCliente[i].cpf,oCliente[i].endereco);
+		                    printf("\nAS INFORMACOES ESTAO CORRETAS? 1-Sim OU 2- Nao!\n");
+		                    scanf("%d", &a1);
+		                    	if(a1==1){
+		                    		printf("INFORMAÇÕES SALVAS!\nCLIENTE CADASTRADO COM SUCESSO!");
+		                    	
+							}
+			                }while(a1!=1);
+			                i++;
+						break;
+						case 3:
+							printf("AGUARDE O RELASE! OPÇÃO NÃO ATIVA!");
+							
+						break;
+						case 4:
+							do{
+							printf("|----------------------------------|\n");
+		                    printf("|      NOVO CADASTRO PIZZA         |\n");
+		                    printf("|----------------------------------|\n");
+		                    printf("DIGITE O NOME DA PIZZA:\n");
+		                    scanf("%s", &aPizza[j].nome);
+		                    printf("\n");
+		                    printf("DIGITE O PRIMEIRO INGREDIENTE DA PIZZA:\n");
+		                    scanf("%s", &aPizza[j].sabor1);
+		                    printf("\n");
+		                    printf("DIGITE O SEGUNDO INGREDIENTE DA PIZZA::\n");
+		                    scanf("%s", &aPizza[j].sabor2);
+		                    printf("\n");
+		                    printf("DIGITE O TERCEIRO INGREDIENTE DA PIZZA::\n");
+		                    scanf("%s", &aPizza[j].sabor3);
+		                    printf("\n");
+		                    printf("DIGITE OS INGREDIENTES ADICIONAIS:\n");
+		                    scanf("%s", &aPizza[j].obsSabor);
+		                    printf("\n");
+		                    printf("DIGITE O VALOR DA PIZZA:\n");
+		                    scanf("%f", &aPizza[j].precoSabor);
+		                    printf("\n");
+		                    printf("PIZZA: %s        INGREDIENTE 1: %s       INGREDIENTE 2: %s       INGREDIENTE 3: %s \nOUTROS INGREDIENTES: %s ", aPizza[j].nome,aPizza[j].sabor1,aPizza[j].sabor2,aPizza[j].sabor3,aPizza[j].obsSabor);
+		                    printf("\nAS INFORMACOES ESTAO CORRETAS? 1-Sim OU 2- Nao!\n");
+		                    scanf("%d", &a2);
+		                    	if(a2==1){
+		                    		printf("INFORMAÇÕES SALVAS!\nPIZZA CADASTRADA COM SUCESSO!");
+		                    	
+							}
+			                }while(a2!=1);
+							j++;	
+						break;
+						case 5:
+							opc =0;
+						break;
+					}
+			case 2:
+				
+			    printf("|-------------------------------------|\n");
+            	printf("|            CONTABILIDADE            |\n");
+            	printf("|-------------------------------------|\n");
+		     	printf("|1 - RELATÓRIO DE VENDAS              |\n");
+		    	printf("|2 - CANCELAR VENDA                   |\n");		     	
+		    	printf("|3 - BALANÇO DIÁRIO                   |\n");
+		    	printf("|4 - VOLTAR AO MENU                   |\n");		    	
+		    	printf("|-------------------------------------|\n");
+		    	printf("|DIGITE A OPÇÃO DESEJADA: \n\n");
+		    	scanf("%d", &opc5);
+		    	switch(opc5){
+		    		case 1:
+				    	printf("|---------------------------------------|\n");
+		            	printf("|          RELATÓRIO DE VENDAS          |\n");
+		            	printf("|---------------------------------------|\n");
+		            	printf("|QUANTIDADE DE PEDIDOS:   %d                    |\n",numPedidosDia);
+		            	printf("|VALOR TOTAL DE VENDAS:   %f                    |\n",valorTtlVendas);
+		            	printf("|---------------------------------------|\n");	
+		            	opc = 0;
+		            	break;
+		            case 2:
+				    	printf("|---------------------------------------|\n");
+		            	printf("|          CANCELAR VENDA               |\n");
+		            	printf("|---------------------------------------|\n");
+		            	printf("|NÚMERO DO PEDIDO:                      |\n");
+		            	scanf("%d",&z);
+		            	printf("VALOR DO PEDIDO É: %f\n ", venda1[z]);
+		            	printf("TEM CERTEZA QUE DESEJA CANCELAR ESTE PEDIDO? 1- SIM || 2- NAO\n");
+		            	scanf("%d",&opc6 );
+		            	if(opc6==1){
+		            		valorTtlVendas = valorTtlVendas - venda1[z];
+						}else{
+							opc = 0;
+						}
+						break;
+					case 3:
+						printf("|---------------------------------------|\n");
+		            	printf("|             BALANÇO DIÁRIO            |\n");
+		            	printf("|---------------------------------------|\n");
+		            	for(z=0;z<numPedidosDia; z++){
+		            		printf("PEDIDO NÚMERO: %d\n", z);
+		            		printf("VALOR DO PEDIDO: %f\n", venda1[z]);
+		            	printf("|---------------------------------------|\n");
+						opc = 0;									            		
+						}
+						break;
+					case 4:
+						opc = 0;
+						break;
+		            			
+		            
+				}
+			         	
+			break;
+			case 3:
+                printf("|----------------------------------|\n");
+                printf("|              ESTOQUE             |\n");
+                printf("|----------------------------------|\n");
+		     	printf("|1 - VER ESTOQUE                   |\n");
+		    	printf("|2 - ADICIONAR AO ESTOQUE          |\n");		     	
+		    	printf("|3 - REMOVER DO ESTOQUE            |\n");
+    			printf("|----------------------------------|\n");				
+				scanf("%d", &opc7);
+				switch(opc7)	{
+					case 1:
+		            	printf("|MASSAS:    %d   QUEIJO:   %d  CEBOLAS:    %d      |\n",massa,queijo,cebola);
+		            	printf("|FRANGO:   %d      CATUPIRY: %d    CALABRESA:   %d |\n",frango, catupiry,calabresa);
+		            	printf("|PEPERONE:   %d   CHOCOLATE: %d   AÇUCAR: %d       |\n",peperone,chocolate,acucar);		            	
+		            	printf("|GOIABADA:   %d                                    |\n",goiabada);
+		            	printf("|COCA:    %d   COCA ZERO:   %d  GUARANA:    %d     |\n",coca,zero,guarana);
+		            	printf("|AGUA S/ G:   %d  AGUA C/ GAS: %d    CERVEJA:   %d |\n",agua,gas,cerveja);	
+					break;
+					case 2:
+
+		                printf("|-----------------------------------|\n");
+		                printf("|       DICIONAR AO ESTOQUE         |\n");
+		                printf("|-----------------------------------|\n");
+				     	printf("|1- MASSA    2- QUEIJO  3- CEBOLA   |\n");
+				    	printf("|4- FRANGO 5-CATUPIRY  6-CALABRESA  |\n");		     	
+				    	printf("|7-PEPERONE 8-CHOCOLATE 9-AÇUCAR    |\n");
+				    	printf("|10-GOIABADA 11-COCA 12-COCA ZERO   |\n");
+				    	printf("|13-GUARANA 14-AGUA 15-AGUA C/GAS   |\n");
+				    	printf("|16-CERVEJA                         |\n");																    	
+		    			printf("|-----------------------------------|\n");	
+						printf("DIGITE A OPÇÃO DESEJADA: ")	;
+						scanf("%d",&opc8);
+						switch(opc8){
+							case 1:
+								printf("MASSA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								massa=massa+quantAdd;
+								break;
+							case 2:
+								printf("QUEIJO:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								queijo=queijo+quantAdd;								
+								break;
+							case 3:
+								printf("CEBOLA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								cebola=cebola+quantAdd;								
+								break;
+							case 4:
+								printf("FRANGO:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								frango=frango+quantAdd;								
+								break;
+							case 5:
+								printf("CATUPIRY:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								catupiry=catupiry+quantAdd;								
+								break;
+							case 6:
+								printf("CALABRESA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								calabresa=calabresa+quantAdd;								
+								break;
+							case 7:
+								printf("PEPERONE:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								peperone=peperone+quantAdd;								
+								break;
+							case 8:
+								printf("CHOCOLATE:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								chocolate=chocolate+quantAdd;								
+								break;
+							case 9:
+								printf("AÇUCAR:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								acucar=acucar+quantAdd;								
+								break;
+							case 10:
+								printf("GOIABADA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								goiabada=goiabada+quantAdd;								
+								break;
+							case 11:
+								printf("COCA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								coca=coca+quantAdd;								
+								break;
+							case 12:
+								printf("COCA ZERO:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								zero=zero+quantAdd;								
+								break;
+							case 13:
+								printf("GUARANA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								guarana=guarana+quantAdd;								
+								break;
+							case 14:
+								printf("AGUA s/ gas:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								agua=agua+quantAdd;								
+								break;
+							case 15:
+								printf("AGUA C/ GAS:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								gas=gas+quantAdd;								
+								break;
+							case 16:
+								printf("CERVEJA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM ADICIONADOS %d", quantAdd);
+								cerveja=cerveja+quantAdd;								
+								break;
+								opc = 0;
+						}
+					case 3:
+						
+
+		                printf("|-----------------------------------|\n");
+		                printf("|       DICIONAR AO ESTOQUE         |\n");
+		                printf("|-----------------------------------|\n");
+				     	printf("|1- MASSA    2- QUEIJO  3- CEBOLA   |\n");
+				    	printf("|4- FRANGO 5-CATUPIRY  6-CALABRESA  |\n");		     	
+				    	printf("|7-PEPERONE 8-CHOCOLATE 9-AÇUCAR    |\n");
+				    	printf("|10-GOIABADA 11-COCA 12-COCA ZERO   |\n");
+				    	printf("|13-GUARANA 14-AGUA 15-AGUA C/GAS   |\n");
+				    	printf("|16-CERVEJA                         |\n");																    	
+		    			printf("|-----------------------------------|\n");	
+						printf("DIGITE A OPÇÃO DESEJADA: ")	;
+						scanf("%d",&opc8);
+						switch(opc8){
+							case 1:
+								printf("MASSA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								massa=massa-quantAdd;
+								break;
+							case 2:
+								printf("QUEIJO:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								queijo=queijo-quantAdd;								
+								break;
+							case 3:
+								printf("CEBOLA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								cebola=cebola-quantAdd;								
+								break;
+							case 4:
+								printf("FRANGO:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								frango=frango-quantAdd;								
+								break;
+							case 5:
+								printf("CATUPIRY:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								catupiry=catupiry-quantAdd;								
+								break;
+							case 6:
+								printf("CALABRESA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								calabresa=calabresa-quantAdd;								
+								break;
+							case 7:
+								printf("PEPERONE:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								peperone=peperone-quantAdd;								
+								break;
+							case 8:
+								printf("CHOCOLATE:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								chocolate=chocolate-quantAdd;								
+								break;
+							case 9:
+								printf("AÇUCAR:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								acucar=acucar-quantAdd;								
+								break;
+							case 10:
+								printf("GOIABADA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								goiabada=goiabada-quantAdd;								
+								break;
+							case 11:
+								printf("COCA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								coca=coca-quantAdd;								
+								break;
+							case 12:
+								printf("COCA ZERO:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								zero=zero-quantAdd;								
+								break;
+							case 13:
+								printf("GUARANA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								guarana=guarana-quantAdd;								
+								break;
+							case 14:
+								printf("AGUA s/ gas:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								agua=agua-quantAdd;								
+								break;
+							case 15:
+								printf("AGUA C/ GAS:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								gas=gas-quantAdd;								
+								break;
+							case 16:
+								printf("CERVEJA:\n QUANTIDADE ATUAL: %d . DIGITE A QUANTIDADE QUE DESEJA INSERIR?\n ",massa);
+								scanf("%d", &quantAdd);
+								printf("FORAM RETIRADAS %d", quantAdd);
+								cerveja=cerveja-quantAdd;								
+								break;
+								opc = 0;
+						}					
+					break;
+					opc = 0;					
+					break;											
+				}			
+			break;
+			case 5:
+				do{
+					printf("|----------------------------------|\n");
+		            printf("|         NOVO FUNCIONARIO         |\n");
+		        	printf("|----------------------------------|\n");
+		            printf("DIGITE O NOME DO FUNCIONÁRIO:\n");
+		            scanf("%s", &oColaborador[p].nome);
+		            printf("\n");
+		            printf("DIGITE O ULTIMO SOBRENOME DO FUNCIONÁRIO:\n");
+		            scanf("%s", &oColaborador[p].sobrenome);
+		            printf("\n");
+		            printf("DIGITE O TELEFONE DO FUNCIONÁRIO COM DDD (EXEMPLO: 61999998888):\n");
+		            scanf("%s", &oColaborador[p].telefone);
+		            printf("\n");
+		            printf("DIGITE O CPF DO FUNCIONÁRIO:\n");
+		            scanf("%s", &oColaborador[p].cpf);
+		            printf("\n");
+		            printf("DIGITE O ENDERECO DO FUNCIONÁRIO:\n");
+		            scanf("%s", &oColaborador[p].endereco);
+		            printf("\n");
+		            printf("NOME: %s        SOBRENOME: %s       TELEFONE: %s       CPF: %s \nENDERECO: %s ", oCliente[i].nome,oCliente[i].ultSobrenome,oCliente[i].telefone,oCliente[i].cpf,oCliente[i].endereco);
+		            printf("\nAS INFORMACOES ESTAO CORRETAS? 1-Sim OU 2- Nao!\n");
+		            scanf("%d", &a4);
+		                if(a1==1){
+		                	printf("INFORMAÇÕES SALVAS!\nCLIENTE CADASTRADO COM SUCESSO!");
+		                    
+							}
+			                }while(a4!=1);
+			                p++;
+			                				
+			break;
+			case 6:
+				printf("deseja realmente sair: 1-Sim ou 2-Nao");
+				scanf("%d", &opc2);
+				if(opc2==2){
+					opc=0;
+				}else{
+					opc=1;
+						}
+			break;
+						}
+				
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}while(opc != 1);
+	return 0;
+		
+}
